@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: rgb(var(--color-primary));
+  --color-secondary: rgb(var(--color-secondary));
+  --color-brand: rgb(var(--color-brand));
+  --color-text-main: rgb(var(--text-main));
+}
+
+:root {
+  --color-primary: 255, 255, 255;
+  --color-secondary: 243, 244, 246;
+  --color-brand: 59, 130, 246;
+  --text-main: 17, 24, 39;
+}
+
+.dark {
+  --color-primary: 18, 18, 18;
+  --color-secondary: 30, 41, 59;
+  --color-brand: 96, 165, 250;
+  --text-main: 248, 250, 252;
+}
+
+body {
+  background-color: rgb(var(--color-primary));
+  color: rgb(var(--text-main));
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200 dark:border-gray-800;
+  }
+}
