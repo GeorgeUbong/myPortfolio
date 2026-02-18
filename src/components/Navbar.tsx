@@ -22,17 +22,16 @@ const Navbar = () => {
   ];
 
   const maker = {
-    name: 'Innov',
+    name: 'Ubongabasi',
     job: 'Web Developer',
   };
 
   return (
-    <nav 
-      className={`fixed w-full z-[100] transition-all duration-300 border-b ${
-        scrolled 
-          ? 'py-3 bg-primary/80 backdrop-blur-lg shadow-sm border-secondary' 
-          : 'py-5 bg-primary border-transparent'
-      }`}
+    <nav
+      className={`fixed w-full z-[100] transition-all duration-300 border-b ${scrolled
+          ? 'py-3 bg-primary/80 backdrop-blur-lg border-gray-200'
+          : 'py-5 '
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -89,18 +88,16 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Backdrop */}
-      <div 
-        className={`fixed inset-0 bg-gray-900/20 backdrop-blur-sm z-[-1] transition-opacity duration-300 md:hidden ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+      <div
+        className={`fixed inset-0 bg-gray-900/20 backdrop-blur-sm z-[-1] transition-opacity duration-300 md:hidden ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Mobile Menu Container */}
-      <div 
-        className={`absolute top-full left-0 w-full bg-primary border-b border-secondary overflow-hidden transition-all duration-300 ease-in-out md:hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+      <div
+        className={`absolute top-full left-0 w-full bg-primary border-b border-secondary overflow-hidden transition-all duration-300 ease-in-out md:hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="px-4 py-6 space-y-4">
           {navLinks.map((link) => (

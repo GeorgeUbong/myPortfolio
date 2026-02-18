@@ -5,7 +5,7 @@ export const ThemeButton = () => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <button 
+        <button
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-secondary transition-all duration-300 flex items-center space-x-2 group"
             aria-label="Toggle theme"
@@ -17,7 +17,7 @@ export const ThemeButton = () => {
                     <Moon size={20} className="text-blue-400 transition-transform duration-500 rotate-0 group-hover:-rotate-12" />
                 )}
             </div>
-            <span className="text-sm font-medium text-text-main">Theme</span>
+            <span className="text-sm font-medium text-text-main hidden sm:block">Theme</span>
         </button>
     );
 };
