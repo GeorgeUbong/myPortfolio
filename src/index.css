@@ -5,6 +5,13 @@
   --color-secondary: rgb(var(--color-secondary));
   --color-brand: rgb(var(--color-brand));
   --color-text-main: rgb(var(--text-main));
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  --animate-scroll: scroll 40s linear infinite;
 }
 
 :root {
