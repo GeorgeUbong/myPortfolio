@@ -67,7 +67,7 @@ import { ArrowDown, GitBranch, Github } from "lucide-react";
     },
     {
         id:3,
-        logo: <img src={figma} alt="javascript image" className="w-10 h-10"/>
+        logo: <img src={figma} alt="figma image" className="w-10 h-10"/>
     }
   ];
 
@@ -125,6 +125,11 @@ export default function Hero() {
     <div className="flex w-max items-center gap-16 py-4 whitespace-nowrap will-change-transform motion-reduce:animate-none animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused]">
       {swift.map((logo) => (
         <div key={logo.id} className="shrink-0">
+          {logo.logo}
+        </div>
+      ))}
+      {swift.map((logo) => (
+        <div key={`dup-${logo.id}`} className="shrink-0">
           {logo.logo}
         </div>
       ))}

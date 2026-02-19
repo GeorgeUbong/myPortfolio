@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Layers, Github, Linkedin, Twitter } from 'lucide-react';
-import ThemeButton from './Theme';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,8 +73,7 @@ const Navbar = () => {
             </div>
 
             <div className="h-6 w-px bg-secondary hidden md:block" />
-            <ThemeButton />
-
+            
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
