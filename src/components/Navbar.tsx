@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Layers, Github, Linkedin, Twitter } from 'lucide-react';
+import img from '../assets/me.jpg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,30 +15,31 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#' },
-    { name: 'Services', href: '#' },
-    { name: 'Portfolio', href: '#' },
-    { name: 'Contact', href: '#' },
+    { name: 'About', href: '#about' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Gallery', href: '#gallery' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   const maker = {
     name: 'Ubongabasi',
     job: 'Web Developer',
+
   };
 
   return (
     <nav
       className={`fixed w-full z-[100] transition-all duration-300 border-b ${scrolled
-          ? 'py-3 bg-primary/80 backdrop-blur-lg border-gray-200'
-          : 'py-5 '
+        ? 'py-3 bg-primary/80 backdrop-blur-lg border-gray-200'
+        : 'py-5 '
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo Section */}
           <a href="/" className="group flex items-center space-x-3">
-            <div className="p-2 bg-blue-600 rounded-xl group-hover:rotate-12 transition-transform duration-300">
-              <Layers className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-blue-600 rounded-full overflow-hidden flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+              <img src={img} alt="profile picture" className="w-[90%] h-[90%] rounded-full object-cover" />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold tracking-tight text-text-main leading-tight">
@@ -63,17 +65,17 @@ const Navbar = () => {
               </div>
               <div className="h-6 w-px bg-secondary" />
               <div className="flex items-center space-x-4">
-                <a href="#" className="p-2 text-gray-400 hover:text-text-main transition-colors">
+                <a href="https://github.com/GeorgeUbong" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-400 hover:text-text-main transition-colors">
                   <Github size={20} />
                 </a>
-                <a href="#" className="p-2 text-gray-400 hover:text-text-main transition-colors">
+                <a href="https://www.linkedin.com/in/ubongabasi-george-a33731234/" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-400 hover:text-text-main transition-colors">
                   <Linkedin size={20} />
                 </a>
               </div>
             </div>
 
             <div className="h-6 w-px bg-secondary hidden md:block" />
-            
+
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -109,10 +111,10 @@ const Navbar = () => {
             </a>
           ))}
           <div className="pt-4 flex items-center space-x-6 border-t border-secondary">
-            <a href="#" className="text-gray-400 hover:text-text-main transition-colors">
+            <a href="https://github.com/GeorgeUbong" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-text-main transition-colors">
               <Github size={24} />
             </a>
-            <a href="#" className="text-gray-400 hover:text-text-main transition-colors">
+            <a href="https://www.linkedin.com/in/ubongabasi-george-a33731234/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-text-main transition-colors">
               <Linkedin size={24} />
             </a>
             <a href="#" className="text-gray-400 hover:text-text-main transition-colors">
