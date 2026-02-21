@@ -1,5 +1,5 @@
 import img from "../assets/react.svg";
-import { ArrowDown, GitBranch, Github } from "lucide-react";
+import {  GitBranch, Github } from "lucide-react";
 import TextCursor from "../components/TextCursor";
 import DecryptedText from "../components/textdec";
 

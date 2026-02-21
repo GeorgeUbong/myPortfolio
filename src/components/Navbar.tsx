@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Layers, Github, Linkedin, Twitter } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react';
 import img from '../assets/me.jpg';
 
 const Navbar = () => {
