@@ -1,4 +1,7 @@
 import img from "../assets/react.svg";
+import meds from "../assets/meds.png";
+import temp from "../assets/temp.png";
+import art from "../assets/art.png";
 import {  GitBranch, Github } from "lucide-react";
 import TextCursor from "../components/TextCursor";
 import DecryptedText from "../components/textdec";
@@ -7,26 +10,30 @@ import DecryptedText from "../components/textdec";
 const maker = {
   name: 'Ubongabasi',
   job: 'Web Developer',
-  about: 'hello this is my about'
+  about: 'These are a few websites and applications I have built, showcasing my skills\n\
+   and passion for web development. Each project reflects my commitment to creating user-friendly,\n\
+    efficient, and visually appealing web solutions.'
 };
 
 const projects = [
   {
     id: 1,
-    name: 'BridgeBox Student',
-    description: 'BridgeBox is an offline-first educational platform designed for unreliable internet environments.\n\
+    name: 'StudentBox',
+    description: 'Student is an offline-first educational platform designed for unreliable internet environments.\n\
        It utilizes Next.js for the interface and Dexie.js to manage a persistent \n\
        IndexedDB database on the client device. By caching subjects, topics, and lessons \n\
        locally, the app ensures continuous learning and data persistence even during server outages \n\
        or power failures.',
     image: img,
+    link: "#",
   },
   {
     id: 2,
     name: 'HealthDB',
     description: 'Health DB is a web application hospital management system that helps hosppitals\n\
       manage patient records, and personal data.',
-    image: img,
+    image: meds,
+    link: "https://health-database-app.vercel.app/Landing"
   },
   {
     id: 3,
@@ -34,15 +41,16 @@ const projects = [
     description: 'Prioritizing the users taste in art scrutiny ArtInstitute is a web app that \n\
       curates a list of art specimens to display the user for the user to enjoy for an extrended period of time \n\
       without refreshing utilizing the chicago art API.',
-    image: img,
+    image: art,
+    link: "https://art-institute.vercel.app/",
   },
   {
-    id: 3,
-    name: 'TeacherBox',
-    description: 'Parent application to student box, teacher box is the admin and management side of the renowed application\n\
-      teachers can edit and manage the various lessons and grades ensuring the students can get refreshingf and upto date content,\n\
-      regardless of location.',
-    image: img,
+    id: 4,
+    name: 'Temperature Sensor App',
+    description: 'An Application to monitor and observe the temperature of a given set of sensors\n\
+    implementing visual indicators for temperature thresholds and normalcy to alert users of potential issues.',
+    image: temp,
+    link: "#"
   },
 ];
 
@@ -50,6 +58,7 @@ const projects = [
 
 import js from "../assets/js.png";
 import figma from "../assets/figma.png";
+
 
 const logoCarousel = [
   {
@@ -192,12 +201,13 @@ export default function Hero() {
                         {project.description}
                       </p>
 
-                      {/**<div className="pt-4">
+                      <div className="pt-4">
                         <button className="flex items-center gap-2 font-bold text-blue-500 hover:text-blue-600 transition-colors group/btn">
-                          View Project Details
-                          <span className="transform transition-transform group-hover/btn:translate-x-1">→</span>
+                          <a href={project.link}>View Project
+                          <span className="transform transition-transform 
+                          group-hover/btn:translate-x-1">→</span></a>
                         </button>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 ))}
