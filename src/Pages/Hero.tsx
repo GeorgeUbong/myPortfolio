@@ -10,13 +10,11 @@ import DecryptedText from "../components/textdec";
 const maker = {
   name: 'Ubongabasi',
   job: 'Web Developer',
-  about: 'These are a few websites and applications I have built, showcasing my skills\n\
-   and passion for web development. Each project reflects my commitment to creating user-friendly,\n\
-    efficient, and visually appealing web solutions.'
+  about: 'Iam ubongabasi a web and mobile developer '
 };
 
 const projects = [
-  {
+ /* {
     id: 1,
     name: 'StudentBox',
     description: 'Student is an offline-first educational platform designed for unreliable internet environments.\n\
@@ -27,6 +25,7 @@ const projects = [
     image: img,
     link: "#",
   },
+  */
   {
     id: 2,
     name: 'HealthDB',
@@ -34,7 +33,7 @@ const projects = [
       manage patient records, and personal data.',
     image: meds,
     link: "https://health-database-app.vercel.app/Landing"
-  },
+  }, 
   {
     id: 3,
     name: 'ArtInstitute',
@@ -89,8 +88,10 @@ export default function Hero() {
           <TextCursor text="🤩">
             <div className="flex flex-col items-center py-20">
 
-              <img src={img} alt="profile picture" className="w-20 h-20 
-                    animate-spin rounded-full hover:scale-110" />
+              {/** <img src={img} alt="profile picture" className="w-20 h-20 
+                    animate-spin rounded-full hover:scale-110" />*/}
+
+
               <h1 className="text-5xl md:text-7xl 
                     mb-12 mt-10"> Hello, I'm <span className="text-blue-500 font-semibold">Ubongabasi </span><br />
                 George a</h1>
