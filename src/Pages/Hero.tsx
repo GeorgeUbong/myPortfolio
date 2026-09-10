@@ -7,7 +7,7 @@ import {
 
 import TextCursor from "../components/TextCursor";
 import DecryptedText from "../components/textdec";
- import profile from "../assets/me.jpg";
+import profile from "../assets/me.jpg";
 
 import meds from "../assets/meds.png";
 import temp from "../assets/temp.png";
@@ -80,15 +80,8 @@ export default function Hero() {
       {/* Background overlay */}
       <div className="fixed inset-0 bg-white/10 pointer-events-none z-0" />
 
-      {/* Navbar 
-       <div className="relative z-50">
-        <Navbar />
-      </div>
-      */}
-     
-
       <main className="relative z-10">
-        {/* ================= HERO ================= */}
+        {/* ================= HERO SECTION ================= */}
         <section
           id="home"
           className="
@@ -96,21 +89,25 @@ export default function Hero() {
             flex
             flex-col
             lg:flex-row
-            gap-10
-            lg:gap-16
-            px-6
-            md:px-10
-            lg:px-16
+            gap-6
+            md:gap-8
+            lg:gap-12
+            px-4
+            sm:px-6
+            md:px-8
+            lg:px-12
             py-8
+            md:py-10
+            lg:py-0
             max-w-7xl
             mx-auto
           "
         >
-          {/* ================= LEFT PROFILE ================= */}
+          {/* ================= LEFT PROFILE (STICKY ON DESKTOP) ================= */}
           <div
             className="
               w-full
-              lg:w-[46%]
+              lg:w-1/2
               lg:sticky
               lg:top-0
               lg:h-screen
@@ -118,18 +115,24 @@ export default function Hero() {
               flex-col
               justify-center
               py-8
+              md:py-12
+              lg:py-30
+              order-1
+              lg:order-none
             "
           >
             <TextCursor text="🤩">
-              <div className="max-w-md">
+              <div className="max-w-md mx-auto lg:mx-0">
                 {/* NAME */}
                 <h1
                   className="
-                    text-4xl
+                    text-3xl
+                    sm:text-4xl
                     md:text-5xl
                     lg:text-[42px]
                     font-extrabold
-                    leading-[0.95]
+                    leading-tight
+                    lg:leading-[0.95]
                     tracking-tight
                   "
                   style={{
@@ -139,11 +142,13 @@ export default function Hero() {
                   {maker.name}
                 </h1>
 
-                {/* JOB */}
+                {/* JOB TITLE */}
                 <h2
                   className="
-                    mt-4
-                    text-lg
+                    mt-3
+                    md:mt-4
+                    text-base
+                    sm:text-lg
                     md:text-xl
                     font-medium
                   "
@@ -155,11 +160,13 @@ export default function Hero() {
                 </h2>
 
                 {/* PROFILE IMAGE */}
-                <div className="mt-8">
+                <div className="mt-6 md:mt-8">
                   <div
                     className="
-                      w-24
-                      h-24
+                      w-20
+                      h-20
+                      sm:w-24
+                      sm:h-24
                       md:w-28
                       md:h-28
                       rounded-full
@@ -167,49 +174,32 @@ export default function Hero() {
                       border-[3px]
                       p-[2px]
                       bg-white
+                      flex-shrink-0
                     "
                     style={{
                       borderColor: "#2428e8",
                     }}
                   >
-                    
-                      
-
-                     
-
-                      <img
-                        src={profile}
-                        alt="George Ubongabasi"
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    
-
-                    <div
-                      className="
-                        w-full
-                        h-full
-                        rounded-full
-                        bg-gray-200
-                        flex
-                        items-center
-                        justify-center
-                        text-xs
-                        text-gray-500
-                      "
-                    >
-                      PHOTO
-                    </div>
+                    <img
+                      src={profile}
+                      alt="George Ubongabasi"
+                      className="w-full h-full object-cover rounded-full"
+                    />
                   </div>
                 </div>
 
                 {/* ABOUT */}
                 <p
                   className="
-                    mt-5
-                    text-[12px]
+                    mt-4
+                    md:mt-5
+                    text-xs
+                    sm:text-sm
                     md:text-[13px]
-                    leading-[1.5]
-                    max-w-[390px]
+                    leading-relaxed
+                    md:leading-[1.5]
+                    max-w-full
+                    lg:max-w-[390px]
                     text-gray-600
                   "
                 >
@@ -217,7 +207,7 @@ export default function Hero() {
                 </p>
 
                 {/* SOCIAL LINKS */}
-                <div className="flex flex-wrap gap-3 mt-7">
+                <div className="flex flex-wrap gap-2 md:gap-3 mt-5 md:mt-7">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
 
@@ -230,27 +220,32 @@ export default function Hero() {
                         className="
                           flex
                           items-center
-                          gap-2
-                          px-3
-                          py-1.5
+                          gap-1.5
+                          md:gap-2
+                          px-2.5
+                          md:px-3
+                          py-1
+                          md:py-1.5
                           rounded-full
                           border
-                          text-[10px]
+                          text-[9px]
+                          sm:text-[10px]
                           font-medium
                           transition-all
                           duration-300
                           hover:bg-[#2428e8]
                           hover:text-white
                           hover:-translate-y-0.5
+                          whitespace-nowrap
                         "
                         style={{
                           borderColor: "#8b8ff5",
                           color: "#2428e8",
-                          backgroundColor:
-                            "rgba(255,255,255,0.45)",
+                          backgroundColor: "rgba(255,255,255,0.45)",
                         }}
                       >
-                        <span>{social.name}</span>
+                        <span className="hidden sm:inline">{social.name}</span>
+                        <span className="sm:hidden">{social.name.split(" ")[0]}</span>
                         <Icon size={12} />
                       </a>
                     );
@@ -260,24 +255,34 @@ export default function Hero() {
             </TextCursor>
           </div>
 
-          {/* ================= PROJECTS ================= */}
+          {/* ================= RIGHT PROJECTS (SCROLLABLE ON ALL SIZES) ================= */}
           <div
             id="projects"
-            className="
-              w-full
-              lg:w-[54%]
-              py-8
-              lg:py-10
-            "
+           className="
+  w-full
+  lg:w-1/2
+  py-8
+  md:py-12
+  lg:py-10
+  order-2
+  lg:order-none
+  overflow-y-auto
+  lg:max-h-screen
+  lg:pr-4
+  [scrollbar-width:none]
+  [-ms-overflow-style:none]
+  [&::-webkit-scrollbar]:hidden
+"
           >
             {/* PROJECT TITLE */}
-            <div className="mb-6">
+            <div className="mb-6 md:mb-8">
               <h3
                 className="
-                  text-3xl
+                  text-2xl
+                  sm:text-3xl
                   md:text-4xl
-                  font-titan
-
+                  font-bold
+                  tracking-tight
                 "
                 style={{
                   color: "#2428e8",
@@ -285,10 +290,14 @@ export default function Hero() {
               >
                 Projects
               </h3>
+              <div 
+                className="h-1 w-16 mt-3 rounded-full"
+                style={{ backgroundColor: "#F29100" }}
+              ></div>
             </div>
 
             {/* PROJECT CARDS */}
-            <div className="space-y-3">
+            <div className="space-y-3 md:space-y-4">
               {projects.map((project) => (
                 <article
                   key={project.id}
@@ -297,21 +306,41 @@ export default function Hero() {
                     rounded-lg
                     overflow-hidden
                     bg-white/90
+                    backdrop-blur-sm
                     border
-                    border-gray-200
+                    border-gray-200/50
                     shadow-md
                     transition-all
                     duration-300
                     hover:-translate-y-1
-                    hover:shadow-xl
+                    hover:shadow-lg
+                    md:hover:shadow-xl
                   "
                 >
+                  {/* PROJECT IMAGE */}
+                  <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden bg-gray-100">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="
+                        w-full
+                        h-full
+                        object-cover
+                        transition-transform
+                        duration-500
+                        group-hover:scale-105
+                      "
+                    />
+                  </div>
+
+                  {/* PROJECT CONTENT */}
                   <div className="p-3 md:p-4">
                     {/* TITLE */}
                     <h4
                       className="
                         text-sm
-                        md:text-base
+                        sm:text-base
+                        md:text-lg
                         font-bold
                         mb-2
                       "
@@ -326,18 +355,21 @@ export default function Hero() {
                     <p
                       className="
                         text-[10px]
-                        md:text-[11px]
-                        leading-[1.45]
-                        text-gray-500
-                        max-w-[520px]
+                        sm:text-[11px]
+                        md:text-xs
+                        leading-relaxed
+                        md:leading-[1.45]
+                        text-gray-600
+                        max-w-full
+                        mb-3
                       "
                     >
                       {project.description}
                     </p>
 
                     {/* BUTTONS */}
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {/* LIVE */}
+                    <div className="flex flex-wrap gap-2">
+                      {/* VIEW LIVE */}
                       <a
                         href={project.link}
                         target="_blank"
@@ -347,21 +379,23 @@ export default function Hero() {
                           items-center
                           gap-1
                           px-3
-                          py-1
+                          py-1.5
                           rounded-full
                           text-[9px]
+                          sm:text-[10px]
                           font-semibold
                           text-white
                           transition-all
                           duration-300
                           hover:scale-105
+                          active:scale-95
                         "
                         style={{
                           backgroundColor: "#F29100",
                         }}
                       >
                         <span>View Live</span>
-                        <ExternalLink size={10} />
+                        <ExternalLink size={11} />
                       </a>
 
                       {/* GITHUB */}
@@ -374,25 +408,26 @@ export default function Hero() {
                           items-center
                           gap-1
                           px-3
-                          py-1
+                          py-1.5
                           rounded-full
                           text-[9px]
+                          sm:text-[10px]
                           font-medium
                           border
                           transition-all
                           duration-300
                           hover:bg-[#2428e8]
                           hover:text-white
+                          hover:border-[#2428e8]
                         "
                         style={{
                           borderColor: "#8b8ff5",
                           color: "#2428e8",
-                          backgroundColor:
-                            "rgba(255,255,255,0.7)",
+                          backgroundColor: "rgba(255,255,255,0.7)",
                         }}
                       >
-                        <span>View on GitHub</span>
-                        <Github size={10} />
+                        <span>GitHub</span>
+                        <Github size={11} />
                       </a>
                     </div>
                   </div>
@@ -402,19 +437,23 @@ export default function Hero() {
           </div>
         </section>
 
-        {/* ================= CONTACT ================= */}
-       
         {/* ================= FOOTER ================= */}
         <footer
           className="
             py-6
-            px-6
+            md:py-8
+            px-4
+            sm:px-6
+            md:px-8
+            lg:px-12
             text-center
             border-t
             border-gray-200/70
+            max-w-7xl
+            mx-auto
           "
         >
-          <p className="text-xs text-gray-500">
+          <p className="text-xs md:text-sm text-gray-600">
             © 2026 Ubongabasi George. All rights reserved.
           </p>
         </footer>
