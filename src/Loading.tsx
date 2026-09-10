@@ -1,0 +1,80 @@
+import { useEffect, useState } from 'react';
+import type { FC } from 'react';
+
+interface LoadingScreenProps {
+  onLoadingComplete: () => void;
+}
+
+const LoadingScreen: FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
+  const [isExiting, setIsExiting] = useState<boolean>(false);
+
+  useEffect(() => {
+    const exitTimer = setTimeout(() => {
+      setIsExiting(true);
+    }, 2000);
+    const completeTimer = setTimeout(onLoadingComplete, 2800);
+
+    return () => {
+      clearTimeout(exitTimer);
+      clearTimeout(completeTimer);
+    };
+  }, [onLoadingComplete]);
+
+  return (
+    <div
+      className={`fixed inset-0 bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center transition-all duration-700 ${
+        isExiting ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      }`}
+      style={{
+        clipPath: isExiting ? 'circle(0% at 50% 50%)' : 'circle(100% at 50% 50%)',
+        transition: 'clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-out'
+      }}
+    >
+      {/* Loading Container */}
+      <div className="flex items-center justify-center gap-6">
+        {/* Left Bar */}
+        <div
+          className="w-12 h-20 bg-white rounded-full"
+          style={{
+            animation: 'pulse-bar 1.2s ease-in-out infinite',
+            animationDelay: '0s'
+          }}
+        />
+
+        {/* Center Bar - Outlined */}
+        <div
+          className="w-12 h-20 border-4 border-white rounded-full"
+          style={{
+            animation: 'pulse-bar 1.2s ease-in-out infinite',
+            animationDelay: '0.2s'
+          }}
+        />
+
+        {/* Right Bar */}
+        <div
+          className="w-12 h-20 bg-white rounded-full"
+          style={{
+            animation: 'pulse-bar 1.2s ease-in-out infinite',
+            animationDelay: '0.4s'
+          }}
+        />
+      </div>
+
+      {/* Animations */}
+      <style>{`
+        @keyframes pulse-bar {
+          0%, 100% {
+            transform: scaleY(0.6);
+            opacity: 0.7;
+          }
+          50% {
+            transform: scaleY(1);
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default LoadingScreen;

@@ -1,246 +1,424 @@
-import img from "../assets/react.svg";
+import {
+  Github,
+  ExternalLink,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
+
+import TextCursor from "../components/TextCursor";
+import DecryptedText from "../components/textdec";
+ import profile from "../assets/me.jpg";
+
 import meds from "../assets/meds.png";
 import temp from "../assets/temp.png";
 import art from "../assets/art.png";
-import {  GitBranch, Github } from "lucide-react";
-import TextCursor from "../components/TextCursor";
-import DecryptedText from "../components/textdec";
-
+import bg from "../assets/bg.png";
 
 const maker = {
-  name: 'Ubongabasi',
-  job: 'Web Developer',
-  about: 'Iam ubongabasi a web and mobile developer '
+  name: "George Ubongabasi Daniel",
+  job: "UIUX/Developer",
+  about:
+    "I craft modern, full-stack digital experiences that balance clean visual design with resilient software architecture. From building intuitive user interfaces to engineering offline-first applications and mobile platforms, I turn complex problems into sleek, usable tools. Driven by a passion for detail and continuous learning, I build products designed to be both highly functional and engaging to use.",
 };
 
 const projects = [
- /* {
+  {
     id: 1,
-    name: 'StudentBox',
-    description: 'Student is an offline-first educational platform designed for unreliable internet environments.\n\
-       It utilizes Next.js for the interface and Dexie.js to manage a persistent \n\
-       IndexedDB database on the client device. By caching subjects, topics, and lessons \n\
-       locally, the app ensures continuous learning and data persistence even during server outages \n\
-       or power failures.',
-    image: img,
-    link: "#",
+    name: "HealthDB",
+    description:
+      "A comprehensive hospital management system that simplifies patient records, personal data management, and healthcare administration.",
+    image: meds,
+    link: "https://health-database-app.vercel.app/Landing",
   },
-  */
   {
     id: 2,
-    name: 'HealthDB',
-    description: 'Health DB is a web application hospital management system that helps hosppitals\n\
-      manage patient records, and personal data.',
-    image: meds,
-    link: "https://health-database-app.vercel.app/Landing"
-  }, 
-  {
-    id: 3,
-    name: 'ArtInstitute',
-    description: 'Prioritizing the users taste in art scrutiny ArtInstitute is a web app that \n\
-      curates a list of art specimens to display the user for the user to enjoy for an extrended period of time \n\
-      without refreshing utilizing the chicago art API.',
+    name: "ArtInstitute",
+    description:
+      "An immersive art discovery platform that curates museum collections and enables extended browsing without interruption, powered by the Chicago Art API.",
     image: art,
     link: "https://art-institute.vercel.app/",
   },
   {
-    id: 4,
-    name: 'Temperature Sensor App',
-    description: 'An Application to monitor and observe the temperature of a given set of sensors\n\
-    implementing visual indicators for temperature thresholds and normalcy to alert users of potential issues.',
-    image: temp,
-    link: "#"
-  },
-];
-
-//stacks
-
-import js from "../assets/js.png";
-import figma from "../assets/figma.png";
-
-
-const logoCarousel = [
-  {
-    id: 1,
-    logo: <img src={img} alt="react" className="w-10 h-10" />
-  },
-  {
-    id: 2,
-    logo: <img src={js} alt="javascript image" className="w-10 h-10" />
-  },
-  {
     id: 3,
-    logo: <img src={figma} alt="figma image" className="w-10 h-10" />
-  }
+    name: "Temperature Sensor App",
+    description:
+      "Real-time temperature monitoring application with visual indicators for sensor thresholds, providing instant alerts for anomalies.",
+    image: temp,
+    link: "#",
+  },
 ];
 
-const swift = [...logoCarousel, ...logoCarousel, ...logoCarousel];
-
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    icon: Linkedin,
+    link: "https://www.linkedin.com/",
+  },
+  {
+    name: "GitHub",
+    icon: Github,
+    link: "https://github.com/GeorgeUbong",
+  },
+  {
+    name: "X (Twitter)",
+    icon: Twitter,
+    link: "https://twitter.com/",
+  },
+];
 
 export default function Hero() {
-
-
   return (
-    <div className="border">
-      <main className="min-h-screen mt-10  text-center p-6">
-        {/**Hero section */}
-        <section className="relative overflow-hidden" id="hero">
-          <TextCursor text="🤩">
-            <div className="flex flex-col items-center py-20">
+    <div
+      className="min-h-screen text-gray-700"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      {/* Background overlay */}
+      <div className="fixed inset-0 bg-white/10 pointer-events-none z-0" />
 
-              {/** <img src={img} alt="profile picture" className="w-20 h-20 
-                    animate-spin rounded-full hover:scale-110" />*/}
+      {/* Navbar 
+       <div className="relative z-50">
+        <Navbar />
+      </div>
+      */}
+     
 
-
-              <h1 className="text-5xl md:text-7xl 
-                    mb-12 mt-10"> Hello, I'm <span className="text-blue-500 font-semibold">Ubongabasi </span><br />
-                George a</h1>
-
-              <h3 className="text-4xl font-bold 
-              text-orange-500 "><DecryptedText text={maker.job}  className="shadow-sm shadow-orange-500"/></h3>
-
-              <p className="md:text-xl mt-15 max-w-2xl mx-auto">A passionate frontend developer, determined to bring solutions
-                through clean, efficient, and user-centric web development.
-              </p>
-
-              <div className="mt-20 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 font-bold 
-              text-white relative z-20">
-
-                <button
-                  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full md:w-auto bg-blue-800 p-4 px-8 rounded-full 
-    flex flex-row items-center justify-center gap-2 transition-transform active:scale-95 hover:scale-110 hover:shadow-lg
-    hover:bg-orange-500 transition-100">
-                  <span>See Projects</span>
-                  <GitBranch size={20} />
-                </button>
-
-                <a
-                  href="https://github.com/GeorgeUbong"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full md:w-auto bg-white border border-gray-200 p-4 px-8
-                  rounded-full flex flex-row items-center justify-center 
-                  gap-2 text-black transition-transform active:scale-95 hover:scale-110 hover:shadow-sm"
+      <main className="relative z-10">
+        {/* ================= HERO ================= */}
+        <section
+          id="home"
+          className="
+            min-h-screen
+            flex
+            flex-col
+            lg:flex-row
+            gap-10
+            lg:gap-16
+            px-6
+            md:px-10
+            lg:px-16
+            py-8
+            max-w-7xl
+            mx-auto
+          "
+        >
+          {/* ================= LEFT PROFILE ================= */}
+          <div
+            className="
+              w-full
+              lg:w-[46%]
+              lg:sticky
+              lg:top-0
+              lg:h-screen
+              flex
+              flex-col
+              justify-center
+              py-8
+            "
+          >
+            <TextCursor text="🤩">
+              <div className="max-w-md">
+                {/* NAME */}
+                <h1
+                  className="
+                    text-4xl
+                    md:text-5xl
+                    lg:text-[42px]
+                    font-extrabold
+                    leading-[0.95]
+                    tracking-tight
+                  "
+                  style={{
+                    color: "#2428e8",
+                  }}
                 >
-                  <span>View Github</span>
-                  <Github size={20} />
-                </a>
+                  {maker.name}
+                </h1>
 
-              </div>
-            </div>
-          </TextCursor>
-        </section>
+                {/* JOB */}
+                <h2
+                  className="
+                    mt-4
+                    text-lg
+                    md:text-xl
+                    font-medium
+                  "
+                  style={{
+                    color: "#2428e8",
+                  }}
+                >
+                  <DecryptedText text={maker.job} />
+                </h2>
 
-        {/**Web stacks used */}
-
-        <div className="mt-20 relative flex flex-col items-center justify-center overflow-hidden">
-          <div className="relative z-20 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
-            <div className="flex w-max items-center gap-16 py-4 whitespace-nowrap will-change-transform motion-reduce:animate-none animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused]">
-              {swift.map((logo) => (
-                <div key={logo.id} className="shrink-0">
-                  {logo.logo}
-                </div>
-              ))}
-              {swift.map((logo) => (
-                <div key={`dup-${logo.id}`} className="shrink-0">
-                  {logo.logo}
-                </div>
-              ))}
-              {swift.map((logo) => (
-                <div key={`dup-${logo.id}`} className="shrink-0">
-                  {logo.logo}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-
-
-        {/**About me and projects */}
-        <section id="about" className="mt-30 px-6 lg:px-12">
-          <div className="max-w-6xl mx-auto text-left">
-            <div className="mb-20">
-              <h1 className="mb-4 text-3xl md:text-4xl font-bold">About Me</h1>
-              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 
-                            leading-relaxed max-w-3xl">
-                {maker.about}
-              </p>
-            </div>
-
-            <div id="projects" className="space-y-32">
-
-
-              <div className="space-y-40">
-                {projects.map((project, index) => (
+                {/* PROFILE IMAGE */}
+                <div className="mt-8">
                   <div
-                    key={project.id}
-                    className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-20 group`}
+                    className="
+                      w-24
+                      h-24
+                      md:w-28
+                      md:h-28
+                      rounded-full
+                      overflow-hidden
+                      border-[3px]
+                      p-[2px]
+                      bg-white
+                    "
+                    style={{
+                      borderColor: "#2428e8",
+                    }}
                   >
-                    {/* IMAGE SECTION */}
-                    <div className="w-full lg:w-3/5 overflow-hidden rounded-3xl bg-gray-100 dark:bg-gray-800 shadow-2xl transition-all duration-500 group-hover:shadow-blue-500/10">
-                      <div className="aspect-video relative overflow-hidden">
-                        <img
-                          src={project.image}
-                          alt={project.name}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      </div>
-                    </div>
+                    
+                      
 
-                    {/* TEXT SECTION */}
-                    <div className="w-full lg:w-2/5 flex flex-col space-y-6">
-                      <div className="space-y-2">
+                     
 
-                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
-                          {project.name}
-                        </h3>
-                      </div>
+                      <img
+                        src={profile}
+                        alt="George Ubongabasi"
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    
 
-                      <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium">
-                        {project.description}
-                      </p>
-
-                      <div className="pt-4">
-                        <button className="flex items-center gap-2 font-bold text-blue-500 hover:text-blue-600 transition-colors group/btn">
-                          <a href={project.link}>View Project
-                          <span className="transform transition-transform 
-                          group-hover/btn:translate-x-1">→</span></a>
-                        </button>
-                      </div>
+                    <div
+                      className="
+                        w-full
+                        h-full
+                        rounded-full
+                        bg-gray-200
+                        flex
+                        items-center
+                        justify-center
+                        text-xs
+                        text-gray-500
+                      "
+                    >
+                      PHOTO
                     </div>
                   </div>
-                ))}
+                </div>
+
+                {/* ABOUT */}
+                <p
+                  className="
+                    mt-5
+                    text-[12px]
+                    md:text-[13px]
+                    leading-[1.5]
+                    max-w-[390px]
+                    text-gray-600
+                  "
+                >
+                  {maker.about}
+                </p>
+
+                {/* SOCIAL LINKS */}
+                <div className="flex flex-wrap gap-3 mt-7">
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon;
+
+                    return (
+                      <a
+                        key={social.name}
+                        href={social.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                          flex
+                          items-center
+                          gap-2
+                          px-3
+                          py-1.5
+                          rounded-full
+                          border
+                          text-[10px]
+                          font-medium
+                          transition-all
+                          duration-300
+                          hover:bg-[#2428e8]
+                          hover:text-white
+                          hover:-translate-y-0.5
+                        "
+                        style={{
+                          borderColor: "#8b8ff5",
+                          color: "#2428e8",
+                          backgroundColor:
+                            "rgba(255,255,255,0.45)",
+                        }}
+                      >
+                        <span>{social.name}</span>
+                        <Icon size={12} />
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
+            </TextCursor>
+          </div>
+
+          {/* ================= PROJECTS ================= */}
+          <div
+            id="projects"
+            className="
+              w-full
+              lg:w-[54%]
+              py-8
+              lg:py-10
+            "
+          >
+            {/* PROJECT TITLE */}
+            <div className="mb-6">
+              <h3
+                className="
+                  text-3xl
+                  md:text-4xl
+                  font-titan
+
+                "
+                style={{
+                  color: "#2428e8",
+                }}
+              >
+                Projects
+              </h3>
+            </div>
+
+            {/* PROJECT CARDS */}
+            <div className="space-y-3">
+              {projects.map((project) => (
+                <article
+                  key={project.id}
+                  className="
+                    group
+                    rounded-lg
+                    overflow-hidden
+                    bg-white/90
+                    border
+                    border-gray-200
+                    shadow-md
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:shadow-xl
+                  "
+                >
+                  <div className="p-3 md:p-4">
+                    {/* TITLE */}
+                    <h4
+                      className="
+                        text-sm
+                        md:text-base
+                        font-bold
+                        mb-2
+                      "
+                      style={{
+                        color: "#2428e8",
+                      }}
+                    >
+                      {project.name}
+                    </h4>
+
+                    {/* DESCRIPTION */}
+                    <p
+                      className="
+                        text-[10px]
+                        md:text-[11px]
+                        leading-[1.45]
+                        text-gray-500
+                        max-w-[520px]
+                      "
+                    >
+                      {project.description}
+                    </p>
+
+                    {/* BUTTONS */}
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {/* LIVE */}
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                          inline-flex
+                          items-center
+                          gap-1
+                          px-3
+                          py-1
+                          rounded-full
+                          text-[9px]
+                          font-semibold
+                          text-white
+                          transition-all
+                          duration-300
+                          hover:scale-105
+                        "
+                        style={{
+                          backgroundColor: "#F29100",
+                        }}
+                      >
+                        <span>View Live</span>
+                        <ExternalLink size={10} />
+                      </a>
+
+                      {/* GITHUB */}
+                      <a
+                        href="https://github.com/GeorgeUbong"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                          inline-flex
+                          items-center
+                          gap-1
+                          px-3
+                          py-1
+                          rounded-full
+                          text-[9px]
+                          font-medium
+                          border
+                          transition-all
+                          duration-300
+                          hover:bg-[#2428e8]
+                          hover:text-white
+                        "
+                        style={{
+                          borderColor: "#8b8ff5",
+                          color: "#2428e8",
+                          backgroundColor:
+                            "rgba(255,255,255,0.7)",
+                        }}
+                      >
+                        <span>View on GitHub</span>
+                        <Github size={10} />
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        {/**Gallery */}
-
-        <section id="gallery" className="mt-20">
-          <div>
-            <h1 className="mb-4 text-3xl md:text-4xl font-bold">Gallery</h1>
-          </div>
-        </section>
-
-        {/**Contact Section */}
-        <section id="contact" className="mt-32 mb-20 px-6">
-          <div className="max-w-4xl mx-auto bg-blue-600 rounded-3xl p-12 text-white">
-            <h2 className="text-4xl font-bold mb-6">Let's Work Together</h2>
-            <p className="text-xl mb-8 opacity-90">
-              I'm always open to new opportunities and interesting projects.
-            </p>
-            <a
-              href="mailto:ubongabasi126@gmail.com"
-              className="inline-block bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors"
-            >
-              Get In Touch
-            </a>
-          </div>
-        </section>
+        {/* ================= CONTACT ================= */}
+       
+        {/* ================= FOOTER ================= */}
+        <footer
+          className="
+            py-6
+            px-6
+            text-center
+            border-t
+            border-gray-200/70
+          "
+        >
+          <p className="text-xs text-gray-500">
+            © 2026 Ubongabasi George. All rights reserved.
+          </p>
+        </footer>
       </main>
     </div>
-  )
+  );
 }

@@ -1,23 +1,24 @@
-import Navbar from './components/Navbar'
-import Hero from './Pages/Hero';
-import {BrowserRouter, Routes, Route} from "react-router-dom"
-import Error from './Pages/404';
-function App() {
+import { useCallback, useState } from "react";
+
+import LoadingScreen from "./Loading";
+import Hero from "./Pages/Hero";
+
+export default function App() {
+  const [showLoading, setShowLoading] = useState(true);
+
+  const handleLoadingComplete = useCallback(() => {
+    setShowLoading(false);
+  }, []);
+
   return (
     <>
-    <Navbar />
-    <BrowserRouter>
-    <Routes>
-     <Route path="/" element={<Hero />} />
-     <Route path="*" element={<Error />} />  
-      
-    </Routes>
-    </BrowserRouter>
-      
-      
+      {showLoading && (
+        <LoadingScreen
+          onLoadingComplete={handleLoadingComplete}
+        />
+      )}
 
+      {!showLoading && <Hero />}
     </>
-  )
+  );
 }
-
-export default App
