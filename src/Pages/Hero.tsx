@@ -7,12 +7,14 @@ import {
 
 import TextCursor from "../components/TextCursor";
 import DecryptedText from "../components/textdec";
+import { useTheme } from "../themeContext/theme"; // Adjust path to your context
 import profile from "../assets/me.jpg";
 
 import meds from "../assets/meds.png";
 import temp from "../assets/temp.png";
 import art from "../assets/art.png";
 import bg from "../assets/bg.png";
+import bgDark from "../assets/bg dark.png"; // Your dark mode background
 
 const maker = {
   name: "George Ubongabasi Daniel",
@@ -66,19 +68,57 @@ const socialLinks = [
   },
 ];
 
+const themeColors = {
+  light: {
+    bg: "#ffffff",
+    bgOverlay: "rgba(255, 255, 255, 0.1)",
+    text: "#2c2c2c",
+    textSecondary: "#666666",
+    primary: "#2428e8",
+    secondary: "#8b8ff5",
+    accent: "#F29100",
+    card: "rgba(255, 255, 255, 0.9)",
+    cardBorder: "rgba(200, 200, 200, 0.5)",
+    socialBg: "rgba(255, 255, 255, 0.45)",
+    imageBg: "#f0f0f0",
+  },
+  dark: {
+    bg: "#0f1419",
+    bgOverlay: "rgba(0, 0, 0, 0.4)",
+    text: "#e4e6eb",
+    textSecondary: "#a0a3b3",
+    primary: "#8A8CFF",
+    secondary: "#8A8CFF",
+    accent: "#F29100",
+    card: "rgba(26, 30, 50, 0.8)",
+    cardBorder: "rgba(138, 140, 255, 0.2)",
+    socialBg: "rgba(26, 30, 50, 0.6)",
+    imageBg: "#1a1e32",
+  },
+};
+
 export default function Hero() {
+  const { theme } = useTheme();
+  const colors = themeColors[theme];
+  const backgroundImage = theme === "dark" ? bgDark : bg;
+
   return (
     <div
-      className="min-h-screen text-gray-700"
+      className="min-h-screen transition-all duration-300"
       style={{
-        backgroundImage: `url(${bg})`,
+        backgroundColor: colors.bg,
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
+        color: colors.text,
       }}
     >
       {/* Background overlay */}
-      <div className="fixed inset-0 bg-white/10 pointer-events-none z-0" />
+      <div
+        className="fixed inset-0 pointer-events-none z-0 transition-colors duration-300"
+        style={{ backgroundColor: colors.bgOverlay }}
+      />
 
       <main className="relative z-10">
         {/* ================= HERO SECTION ================= */}
@@ -134,9 +174,10 @@ export default function Hero() {
                     leading-tight
                     lg:leading-[0.95]
                     tracking-widest
+                    transition-colors duration-300
                   "
                   style={{
-                    color: "#2428e8",
+                    color: colors.primary,
                     fontFamily: "'Titan One', cursive",
                   }}
                 >
@@ -152,9 +193,10 @@ export default function Hero() {
                     sm:text-lg
                     md:text-2xl
                     font-medium
+                    transition-colors duration-300
                   "
                   style={{
-                    color: "#2428e8",
+                    color: colors.primary,
                   }}
                 >
                   <DecryptedText text={maker.job} />
@@ -174,11 +216,12 @@ export default function Hero() {
                       overflow-hidden
                       border-[3px]
                       p-[2px]
-                      bg-white
                       flex-shrink-0
+                      transition-all duration-300
                     "
                     style={{
-                      borderColor: "#2428e8",
+                      borderColor: colors.primary,
+                      backgroundColor: colors.socialBg,
                     }}
                   >
                     <img
@@ -201,8 +244,11 @@ export default function Hero() {
                     md:leading-[1.5]
                     max-w-full
                     lg:max-w-[390px]
-                    text-gray-600
+                    transition-colors duration-300
                   "
+                  style={{
+                    color: colors.textSecondary,
+                  }}
                 >
                   {maker.about}
                 </p>
@@ -234,15 +280,21 @@ export default function Hero() {
                           font-medium
                           transition-all
                           duration-300
-                          hover:bg-[#2428e8]
-                          hover:text-white
                           hover:-translate-y-0.5
                           whitespace-nowrap
                         "
                         style={{
-                          borderColor: "#8b8ff5",
-                          color: "#2428e8",
-                          backgroundColor: "rgba(255,255,255,0.45)",
+                          borderColor: colors.secondary,
+                          color: colors.primary,
+                          backgroundColor: colors.socialBg,
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = colors.primary;
+                          e.currentTarget.style.color = colors.bg;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = colors.socialBg;
+                          e.currentTarget.style.color = colors.primary;
                         }}
                       >
                         <span className="hidden sm:inline">{social.name}</span>
@@ -259,7 +311,7 @@ export default function Hero() {
           {/* ================= RIGHT PROJECTS (SCROLLABLE ON ALL SIZES) ================= */}
           <div
             id="projects"
-           className="
+            className="
   w-full
   lg:w-1/2
   py-8
@@ -279,33 +331,40 @@ export default function Hero() {
             <div className="mb-6 md:mb-8">
               <div className="flex items-center gap-3">
                 <h3
-                className="
-                  text-2xl
-                  sm:text-3xl
-                  md:text-4xl
-                  font-bold
-                  tracking-tight
-                "
-                style={{
-                  color: "#2428e8",
-                }}
-              >
-                Projects
-              </h3>
-              <p  className="
-                  text-2xl
-                  sm:text-3xl
-                  md:text-xl
-                  font-bold
-                  tracking-tight
-                "
-                 style={{
-                  color: "#F29100",
-                }}> ( {projects.length} )</p>
+                  className="
+                    text-2xl
+                    sm:text-3xl
+                    md:text-4xl
+                    font-bold
+                    tracking-tight
+                    transition-colors duration-300
+                  "
+                  style={{
+                    color: colors.primary,
+                  }}
+                >
+                  Projects
+                </h3>
+                <p
+                  className="
+                    text-2xl
+                    sm:text-3xl
+                    md:text-xl
+                    font-bold
+                    tracking-tight
+                    transition-colors duration-300
+                  "
+                  style={{
+                    color: colors.accent,
+                  }}
+                >
+                  {" "}
+                  ( {projects.length} )
+                </p>
               </div>
-              <div 
-                className="h-1 w-16 mt-3 rounded-full"
-                style={{ backgroundColor: "#F29100" }}
+              <div
+                className="h-1 w-16 mt-3 rounded-full transition-colors duration-300"
+                style={{ backgroundColor: colors.accent }}
               ></div>
             </div>
 
@@ -318,10 +377,8 @@ export default function Hero() {
                     group
                     rounded-lg
                     overflow-hidden
-                    bg-white/90
                     backdrop-blur-sm
                     border
-                    border-gray-200/50
                     shadow-md
                     transition-all
                     duration-300
@@ -329,9 +386,16 @@ export default function Hero() {
                     hover:shadow-lg
                     md:hover:shadow-xl
                   "
+                  style={{
+                    backgroundColor: colors.card,
+                    borderColor: colors.cardBorder,
+                  }}
                 >
                   {/* PROJECT IMAGE */}
-                  <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden bg-gray-100">
+                  <div
+                    className="relative h-32 sm:h-40 md:h-48 overflow-hidden transition-colors duration-300"
+                    style={{ backgroundColor: colors.imageBg }}
+                  >
                     <img
                       src={project.image}
                       alt={project.name}
@@ -356,9 +420,10 @@ export default function Hero() {
                         md:text-lg
                         font-bold
                         mb-2
+                        transition-colors duration-300
                       "
                       style={{
-                        color: "#2428e8",
+                        color: colors.primary,
                       }}
                     >
                       {project.name}
@@ -372,10 +437,13 @@ export default function Hero() {
                         md:text-xs
                         leading-relaxed
                         md:leading-[1.45]
-                        text-gray-600
                         max-w-full
                         mb-3
+                        transition-colors duration-300
                       "
+                      style={{
+                        color: colors.textSecondary,
+                      }}
                     >
                       {project.description}
                     </p>
@@ -404,7 +472,7 @@ export default function Hero() {
                           active:scale-95
                         "
                         style={{
-                          backgroundColor: "#F29100",
+                          backgroundColor: colors.accent,
                         }}
                       >
                         <span>View Live</span>
@@ -429,14 +497,23 @@ export default function Hero() {
                           border
                           transition-all
                           duration-300
-                          hover:bg-[#2428e8]
-                          hover:text-white
-                          hover:border-[#2428e8]
+                          hover:scale-105
+                          active:scale-95
                         "
                         style={{
-                          borderColor: "#8b8ff5",
-                          color: "#2428e8",
-                          backgroundColor: "rgba(255,255,255,0.7)",
+                          borderColor: colors.secondary,
+                          color: colors.primary,
+                          backgroundColor: colors.socialBg,
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = colors.primary;
+                          e.currentTarget.style.color = colors.bg;
+                          e.currentTarget.style.borderColor = colors.primary;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = colors.socialBg;
+                          e.currentTarget.style.color = colors.primary;
+                          e.currentTarget.style.borderColor = colors.secondary;
                         }}
                       >
                         <span>View on GitHub</span>
@@ -461,12 +538,16 @@ export default function Hero() {
             lg:px-12
             text-center
             border-t
-            border-gray-200/70
             max-w-7xl
             mx-auto
+            transition-all duration-300
           "
+          style={{
+            borderColor: theme === "dark" ? "rgba(138, 140, 255, 0.2)" : "rgba(200, 200, 200, 0.7)",
+            color: colors.textSecondary,
+          }}
         >
-          <p className="text-xs md:text-sm text-gray-600">
+          <p className="text-xs md:text-sm">
             © 2026 Ubongabasi George. All rights reserved.
           </p>
         </footer>
