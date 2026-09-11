@@ -52,7 +52,7 @@ const socialLinks = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    link: "https://www.linkedin.com/",
+    link: "https://www.linkedin.com/in/ubongabasi-george-a33731234/",
   },
   {
     name: "GitHub",
@@ -121,22 +121,23 @@ export default function Hero() {
               lg:order-none
             "
           >
-            <TextCursor text="🤩">
+            <TextCursor text="🌟">
               <div className="max-w-md mx-auto lg:mx-0">
                 {/* NAME */}
                 <h1
                   className="
                     text-3xl
                     sm:text-4xl
-                    md:text-5xl
+                    md:text-6xl
                     lg:text-[42px]
                     font-extrabold
                     leading-tight
                     lg:leading-[0.95]
-                    tracking-tight
+                    tracking-widest
                   "
                   style={{
                     color: "#2428e8",
+                    fontFamily: "'Titan One', cursive",
                   }}
                 >
                   {maker.name}
@@ -149,7 +150,7 @@ export default function Hero() {
                     md:mt-4
                     text-base
                     sm:text-lg
-                    md:text-xl
+                    md:text-2xl
                     font-medium
                   "
                   style={{
@@ -163,12 +164,12 @@ export default function Hero() {
                 <div className="mt-6 md:mt-8">
                   <div
                     className="
-                      w-20
-                      h-20
+                      w-40
+                      h-40
                       sm:w-24
                       sm:h-24
-                      md:w-28
-                      md:h-28
+                      md:w-40
+                      md:h-40
                       rounded-full
                       overflow-hidden
                       border-[3px]
@@ -182,7 +183,7 @@ export default function Hero() {
                   >
                     <img
                       src={profile}
-                      alt="George Ubongabasi"
+                      alt="An image of George Ubongabasi "
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
@@ -193,9 +194,9 @@ export default function Hero() {
                   className="
                     mt-4
                     md:mt-5
-                    text-xs
+                    text-m
                     sm:text-sm
-                    md:text-[13px]
+                    md:text-[18px]
                     leading-relaxed
                     md:leading-[1.5]
                     max-w-full
@@ -228,8 +229,8 @@ export default function Hero() {
                           md:py-1.5
                           rounded-full
                           border
-                          text-[9px]
-                          sm:text-[10px]
+                          text-[14px]
+                          sm:text-[18px]
                           font-medium
                           transition-all
                           duration-300
@@ -276,7 +277,8 @@ export default function Hero() {
           >
             {/* PROJECT TITLE */}
             <div className="mb-6 md:mb-8">
-              <h3
+              <div className="flex items-center gap-3">
+                <h3
                 className="
                   text-2xl
                   sm:text-3xl
@@ -290,6 +292,17 @@ export default function Hero() {
               >
                 Projects
               </h3>
+              <p  className="
+                  text-2xl
+                  sm:text-3xl
+                  md:text-xl
+                  font-bold
+                  tracking-tight
+                "
+                 style={{
+                  color: "#F29100",
+                }}> ( {projects.length} )</p>
+              </div>
               <div 
                 className="h-1 w-16 mt-3 rounded-full"
                 style={{ backgroundColor: "#F29100" }}
@@ -426,7 +439,7 @@ export default function Hero() {
                           backgroundColor: "rgba(255,255,255,0.7)",
                         }}
                       >
-                        <span>GitHub</span>
+                        <span>View on GitHub</span>
                         <Github size={11} />
                       </a>
                     </div>

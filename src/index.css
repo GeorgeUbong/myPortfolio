@@ -2,9 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --font-titan: 'Titan', sans-serif;
-}
 
 @custom-variant dark (&:where(.dark, .dark *));
 

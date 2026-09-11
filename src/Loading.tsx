@@ -11,8 +11,8 @@ const LoadingScreen: FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   useEffect(() => {
     const exitTimer = setTimeout(() => {
       setIsExiting(true);
-    }, 2000);
-    const completeTimer = setTimeout(onLoadingComplete, 2800);
+    }, 1200);
+    const completeTimer = setTimeout(onLoadingComplete, 2100);
 
     return () => {
       clearTimeout(exitTimer);
@@ -27,7 +27,7 @@ const LoadingScreen: FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
       }`}
       style={{
         clipPath: isExiting ? 'circle(0% at 50% 50%)' : 'circle(100% at 50% 50%)',
-        transition: 'clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out'
+        transition: 'clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-in'
       }}
     >
       {/* CSS Loader */}
