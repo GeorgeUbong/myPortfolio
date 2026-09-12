@@ -20,7 +20,11 @@ const maker = {
   name: "George Ubongabasi Daniel",
   job: "UIUX/Developer",
   about:
-    "I craft modern, full-stack digital experiences that balance clean visual design with resilient software architecture. From building intuitive user interfaces to engineering offline-first applications and mobile platforms, I turn complex problems into sleek, usable tools. Driven by a passion for detail and continuous learning, I build products designed to be both highly functional and engaging to use.",
+    "I’m a UI/UX Developer focused on creating modern, intuitive digital experiences that combine \n\
+    thoughtful visual design with solid front-end development. I work across UI/UX design, web and mobile development,\n\
+     and interactive prototyping, turning complex ideas into clean, functional, and engaging products. With a strong eye \n\
+     for detail and a continuous drive to learn, I build interfaces that not only look \n\
+    good but are practical, responsive, and enjoyable to use.",
 };
 
 const projects = [
