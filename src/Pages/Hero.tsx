@@ -13,6 +13,7 @@ import profile from "../assets/me.jpg";
 import meds from "../assets/meds.png";
 import temp from "../assets/temp.png";
 import art from "../assets/art.png";
+import Laundro from "../assets/laundry-app.png";
 import bg from "../assets/bg.png";
 import bgDark from "../assets/bg dark.png"; // Your dark mode background
 
@@ -52,6 +53,15 @@ const projects = [
     image: temp,
     link: "#",
   },
+
+  {
+    id: 4,
+    name: "Laundro",
+    description: "A laundry management app designed to make laundry services easier to manage for both customers and staff. Users can place and track orders, manage their profiles, and monitor their laundry balance. Admins can manage customers, \n\
+    categories, orders, balances, and view key business statistics through a dedicated dashboard.",
+    image: Laundro,
+    link: "https://laundry-app-six-smoky.vercel.app/",
+  }
 ];
 
 const socialLinks = [
