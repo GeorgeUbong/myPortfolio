@@ -21,6 +21,9 @@ import Laundro from "../assets/laundry-app.png";
 import bg from "../assets/bg.png";
 import bgDark from "../assets/bg dark.png"; // Your dark mode background
 
+//github lik
+const GithubLink = "https://github.com/GeorgeUbong?tab=repositories"
+
 const maker = {
   name: "George Ubongabasi Daniel",
   job: "UIUX/Developer",
@@ -509,7 +512,7 @@ export default function Hero() {
 
                       {/* GITHUB */}
                       <a
-                        href="https://github.com/GeorgeUbong"
+                        href= {GithubLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="
