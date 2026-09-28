@@ -2,8 +2,12 @@ import {
   Github,
   ExternalLink,
   Linkedin,
-  Twitter,
+  type LucideIcon,
 } from "lucide-react";
+
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBehance } from "@fortawesome/free-brands-svg-icons";
 
 import TextCursor from "../components/TextCursor";
 import DecryptedText from "../components/textdec";
@@ -64,7 +68,11 @@ const projects = [
   }
 ];
 
-const socialLinks = [
+const socialLinks: Array<{
+  name: string;
+  icon: LucideIcon | IconDefinition;
+  link: string;
+}> = [
   {
     name: "LinkedIn",
     icon: Linkedin,
@@ -76,9 +84,9 @@ const socialLinks = [
     link: "https://github.com/GeorgeUbong",
   },
   {
-    name: "X (Twitter)",
-    icon: Twitter,
-    link: "https://twitter.com/",
+    name: "Behance",
+    icon: faBehance,
+    link: "https://www.behance.net/2ubongGeorge",
   },
 ];
 
@@ -270,7 +278,9 @@ export default function Hero() {
                 {/* SOCIAL LINKS */}
                 <div className="flex flex-wrap gap-2 md:gap-3 mt-5 md:mt-7">
                   {socialLinks.map((social) => {
-                    const Icon = social.icon;
+                    const isFontAwesomeIcon = social.name === "Behance";
+                    const LucideIconComponent =
+                      !isFontAwesomeIcon ? (social.icon as LucideIcon) : null;
 
                     return (
                       <a
@@ -313,7 +323,11 @@ export default function Hero() {
                       >
                         <span className="hidden sm:inline">{social.name}</span>
                         <span className="sm:hidden">{social.name.split(" ")[0]}</span>
-                        <Icon size={12} />
+                        {isFontAwesomeIcon ? (
+                          <FontAwesomeIcon icon={social.icon as IconDefinition} size="sm" />
+                        ) : LucideIconComponent ? (
+                          <LucideIconComponent size={12} />
+                        ) : null}
                       </a>
                     );
                   })}
