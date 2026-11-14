@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Github,
   ExternalLink,
@@ -14,15 +15,9 @@ import DecryptedText from "../components/textdec";
 import { useTheme } from "../themeContext/theme"; // Adjust path to your context
 import profile from "../assets/me.jpg";
 
-import meds from "../assets/meds.png";
-import temp from "../assets/temp.png";
-import art from "../assets/art.png";
-import Laundro from "../assets/laundry-app.png";
 import bg from "../assets/bg.png";
 import bgDark from "../assets/bg dark.png"; // Your dark mode background
-
-//github lik
-const GithubLink = "https://github.com/GeorgeUbong?tab=repositories"
+import { fetchProjects, type PortfolioProject } from "../sanity/projects";
 
 const maker = {
   name: "George Ubongabasi Daniel",
@@ -34,42 +29,6 @@ const maker = {
      for detail and a continuous drive to learn, I build interfaces that not only look \n\
     good but are practical, responsive, and enjoyable to use.",
 };
-
-const projects = [
-  {
-    id: 1,
-    name: "HealthDB",
-    description:
-      "A comprehensive hospital management system that simplifies patient records, personal data management, and healthcare administration.",
-    image: meds,
-    link: "https://health-database-app.vercel.app/Landing",
-  },
-  {
-    id: 2,
-    name: "ArtInstitute",
-    description:
-      "An immersive art discovery platform that curates museum collections and enables extended browsing without interruption, powered by the Chicago Art API.",
-    image: art,
-    link: "https://art-institute.vercel.app/",
-  },
-  {
-    id: 3,
-    name: "Temperature Sensor App",
-    description:
-      "Real-time temperature monitoring application with visual indicators for sensor thresholds, providing instant alerts for anomalies.",
-    image: temp,
-    link: "#",
-  },
-
-  {
-    id: 4,
-    name: "Laundro",
-    description: "A laundry management app designed to make laundry services easier to manage for both customers and staff. Users can place and track orders, manage their profiles, and monitor their laundry balance. Admins can manage customers, \n\
-    categories, orders, balances, and view key business statistics through a dedicated dashboard.",
-    image: Laundro,
-    link: "https://laundry-app-six-smoky.vercel.app/",
-  }
-];
 
 const socialLinks: Array<{
   name: string;
@@ -126,6 +85,35 @@ export default function Hero() {
   const { theme } = useTheme();
   const colors = themeColors[theme];
   const backgroundImage = theme === "dark" ? bgDark : bg;
+  const [projects, setProjects] = useState<PortfolioProject[]>([]);
+  const [projectsLoading, setProjectsLoading] = useState(true);
+  const [projectsError, setProjectsError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetchProjects()
+      .then((sanityProjects) => {
+        if (isMounted) {
+          setProjects(sanityProjects);
+        }
+      })
+      .catch((error: unknown) => {
+        console.error("Failed to load portfolio projects from Sanity.", error);
+        if (isMounted) {
+          setProjectsError("Projects could not be loaded. Please try again later.");
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setProjectsLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div
@@ -401,51 +389,66 @@ export default function Hero() {
 
             {/* PROJECT CARDS */}
             <div className="space-y-3 md:space-y-4">
-              {projects.map((project) => (
-                <article
-                  key={project.id}
-                  className="
-                    group
-                    rounded-lg
-                    overflow-hidden
-                    backdrop-blur-sm
-                    border
-                    shadow-md
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:shadow-lg
-                    md:hover:shadow-xl
-                  "
-                  style={{
-                    backgroundColor: colors.card,
-                    borderColor: colors.cardBorder,
-                  }}
-                >
-                  {/* PROJECT IMAGE */}
-                  <div
-                    className="relative h-32 sm:h-40 md:h-48 overflow-hidden transition-colors duration-300"
-                    style={{ backgroundColor: colors.imageBg }}
+              {projectsLoading ? (
+                <p role="status" className="text-sm" style={{ color: colors.textSecondary }}>
+                  Loading projects…
+                </p>
+              ) : projectsError ? (
+                <p role="alert" className="text-sm" style={{ color: colors.textSecondary }}>
+                  {projectsError}
+                </p>
+              ) : projects.length === 0 ? (
+                <p className="text-sm" style={{ color: colors.textSecondary }}>
+                  No published projects yet.
+                </p>
+              ) : (
+                projects.map((project) => (
+                  <article
+                    key={project._id}
+                    className="
+                      group
+                      rounded-lg
+                      overflow-hidden
+                      backdrop-blur-sm
+                      border
+                      shadow-md
+                      transition-all
+                      duration-300
+                      hover:-translate-y-1
+                      hover:shadow-lg
+                      md:hover:shadow-xl
+                    "
+                    style={{
+                      backgroundColor: colors.card,
+                      borderColor: colors.cardBorder,
+                    }}
                   >
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="
-                        w-full
-                        h-full
-                        object-cover
-                        transition-transform
-                        duration-500
-                        group-hover:scale-105
-                      "
-                    />
-                  </div>
+                    {/* PROJECT IMAGE */}
+                    <div
+                      className="relative h-32 sm:h-40 md:h-48 overflow-hidden transition-colors duration-300"
+                      style={{ backgroundColor: colors.imageBg }}
+                    >
+                      {project.imageUrl && (
+                        <img
+                          src={project.imageUrl}
+                          alt={project.imageAlt || project.name}
+                          className="
+                          w-full
+                          h-full
+                          object-cover
+                          transition-transform
+                          duration-500
+                          group-hover:scale-105
+                        "
+                        />
+                      )}
+                    </div>
 
-                  {/* PROJECT CONTENT */}
-                  <div className="p-3 md:p-4">
-                    {/* TITLE */}
-                    <h4
-                      className="
+                    {/* PROJECT CONTENT */}
+                    <div className="p-3 md:p-4">
+                      {/* TITLE */}
+                      <h4
+                        className="
                         text-sm
                         sm:text-base
                         md:text-lg
@@ -453,16 +456,16 @@ export default function Hero() {
                         mb-2
                         transition-colors duration-300
                       "
-                      style={{
-                        color: colors.primary,
-                      }}
-                    >
-                      {project.name}
-                    </h4>
+                        style={{
+                          color: colors.primary,
+                        }}
+                      >
+                        {project.name}
+                      </h4>
 
-                    {/* DESCRIPTION */}
-                    <p
-                      className="
+                      {/* DESCRIPTION */}
+                      <p
+                        className="
                         text-[10px]
                         sm:text-[11px]
                         md:text-xs
@@ -472,21 +475,21 @@ export default function Hero() {
                         mb-3
                         transition-colors duration-300
                       "
-                      style={{
-                        color: colors.textSecondary,
-                      }}
-                    >
-                      {project.description}
-                    </p>
+                        style={{
+                          color: colors.textSecondary,
+                        }}
+                      >
+                        {project.description}
+                      </p>
 
-                    {/* BUTTONS */}
-                    <div className="flex flex-wrap gap-2">
-                      {/* VIEW LIVE */}
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
+                      {/* BUTTONS */}
+                      <div className="flex flex-wrap gap-2">
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
                           inline-flex
                           items-center
                           gap-1
@@ -501,21 +504,22 @@ export default function Hero() {
                           duration-300
                           hover:scale-105
                           active:scale-95
-                        "
-                        style={{
-                          backgroundColor: colors.accent,
-                        }}
-                      >
-                        <span>View Live</span>
-                        <ExternalLink size={11} />
-                      </a>
+                            "
+                            style={{
+                              backgroundColor: colors.accent,
+                            }}
+                          >
+                            <span>View Live</span>
+                            <ExternalLink size={11} />
+                          </a>
+                        )}
 
-                      {/* GITHUB */}
-                      <a
-                        href= {GithubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
                           inline-flex
                           items-center
                           gap-1
@@ -530,30 +534,32 @@ export default function Hero() {
                           duration-300
                           hover:scale-105
                           active:scale-95
-                        "
-                        style={{
-                          borderColor: colors.secondary,
-                          color: colors.primary,
-                          backgroundColor: colors.socialBg,
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = colors.primary;
-                          e.currentTarget.style.color = colors.bg;
-                          e.currentTarget.style.borderColor = colors.primary;
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = colors.socialBg;
-                          e.currentTarget.style.color = colors.primary;
-                          e.currentTarget.style.borderColor = colors.secondary;
-                        }}
-                      >
-                        <span>View on GitHub</span>
-                        <Github size={11} />
-                      </a>
+                            "
+                            style={{
+                              borderColor: colors.secondary,
+                              color: colors.primary,
+                              backgroundColor: colors.socialBg,
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = colors.primary;
+                              e.currentTarget.style.color = colors.bg;
+                              e.currentTarget.style.borderColor = colors.primary;
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = colors.socialBg;
+                              e.currentTarget.style.color = colors.primary;
+                              e.currentTarget.style.borderColor = colors.secondary;
+                            }}
+                          >
+                            <span>View on GitHub</span>
+                            <Github size={11} />
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))
+              )}
             </div>
           </div>
         </section>
